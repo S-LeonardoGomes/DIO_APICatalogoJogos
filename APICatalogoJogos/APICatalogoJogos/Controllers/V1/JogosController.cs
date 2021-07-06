@@ -11,5 +11,40 @@ namespace APICatalogoJogos.Controllers.V1
     [ApiController]
     public class JogosController : ControllerBase
     {
+        [HttpGet]
+        public async Task<ActionResult<List<object>>> Obter()
+        {
+            return Ok();
+        }
+
+        [HttpGet("{idJogo:guid}")]
+        public async Task<ActionResult<object>> Obter(Guid idJogo)
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<object>> InserirJogo(object jogo)
+        {
+            return Ok();
+        }
+
+        [HttpPut("{idJogo:guid}")]
+        public async Task<ActionResult> AtualizarJogo(Guid jogo)
+        {
+            return Ok();
+        }
+
+        [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
+        public async Task<ActionResult> AtualizarJogo(Guid jogo, double preco)
+        {
+            return Ok();
+        }
+
+        [HttpDelete("{idJogo:guid}")]
+        public async Task<AcceptedResult> ApagarJogo(Guid jogo)
+        {
+            return Ok();
+        }
     }
 }
