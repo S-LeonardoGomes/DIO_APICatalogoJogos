@@ -1,11 +1,12 @@
-﻿using System;
+﻿using APICatalogoJogos.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace APICatalogoJogos.Repositories
 {
-    public interface IJogoRepository
+    public interface IJogoRepository : IDisposable
     {
         Task<List<Jogo>> Obter(int pagina, int quantidade);
         Task<Jogo> Obter(Guid id);
