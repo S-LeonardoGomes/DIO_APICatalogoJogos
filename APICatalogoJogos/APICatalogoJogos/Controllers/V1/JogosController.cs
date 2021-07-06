@@ -90,9 +90,18 @@ namespace APICatalogoJogos.Controllers.V1
         }
 
         [HttpDelete("{idJogo:guid}")]
-        public async Task<AcceptedResult> ApagarJogo(Guid idJogo)
+        public async Task<ActionResult> ApagarJogo([FromRoute] Guid idJogo)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Remover(idJogo);
+
+                return Ok();
+            }
+            catch(Exception ex)
+            {
+                return NotFound("Este jogo não existe");
+            }
         }
     }
 }
