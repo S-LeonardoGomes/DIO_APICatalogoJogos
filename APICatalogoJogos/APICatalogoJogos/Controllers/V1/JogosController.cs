@@ -51,6 +51,7 @@ namespace APICatalogoJogos.Controllers.V1
             try
             {
                 var jogo = await _jogoService.Inserir(jogoInputModel);
+                
                 return Ok(jogo);
             }
             catch (Exception ex)
@@ -60,9 +61,18 @@ namespace APICatalogoJogos.Controllers.V1
         }
 
         [HttpPut("{idJogo:guid}")]
-        public async Task<ActionResult> AtualizarJogo(Guid idJogo, JogoInputModel jogo)
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromBody] JogoInputModel jogoInputModel)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Atualizar(idJogo, jogoInputModel);
+                
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return NotFound("Este jogo não existe");
+            }
         }
 
         [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
