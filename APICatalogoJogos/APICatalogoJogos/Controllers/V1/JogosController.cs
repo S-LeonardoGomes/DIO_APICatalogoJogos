@@ -35,9 +35,14 @@ namespace APICatalogoJogos.Controllers.V1
         }
 
         [HttpGet("{idJogo:guid}")]
-        public async Task<ActionResult<JogoViewModel>> Obter(Guid idJogo)
+        public async Task<ActionResult<JogoViewModel>> Obter([FromRoute] Guid idJogo)
         {
-            return Ok();
+            var jogo = await _jogoService.Obter(idJogo);
+
+            if (jogo == null)
+                return NoContent();
+
+            return Ok(jogo);
         }
 
         [HttpPost]
