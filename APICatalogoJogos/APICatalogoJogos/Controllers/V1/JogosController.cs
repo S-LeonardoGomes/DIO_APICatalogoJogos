@@ -46,9 +46,17 @@ namespace APICatalogoJogos.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<ActionResult<JogoViewModel>> InserirJogo(JogoInputModel jogo)
+        public async Task<ActionResult<JogoViewModel>> InserirJogo([FromBody] JogoInputModel jogoInputModel)
         {
-            return Ok();
+            try
+            {
+                var jogo = await _jogoService.Inserir(jogoInputModel);
+                return Ok(jogo);
+            }
+            catch (Exception ex)
+            {
+                return UnprocessableEntity("Já existe um jogo com este nome para esta produtora");
+            }
         }
 
         [HttpPut("{idJogo:guid}")]
