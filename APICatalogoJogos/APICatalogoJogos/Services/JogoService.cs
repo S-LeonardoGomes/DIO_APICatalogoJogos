@@ -1,4 +1,5 @@
 ﻿using APICatalogoJogos.Entities;
+using APICatalogoJogos.Exceptions;
 using APICatalogoJogos.InputModel;
 using APICatalogoJogos.Repositories;
 using APICatalogoJogos.ViewModel;
@@ -52,7 +53,7 @@ namespace APICatalogoJogos.Services
             var entidadeJogo = await _jogoRepository.Obter(jogo.Nome, jogo.Produtora);
 
             if (entidadeJogo.Count() > 0)
-                throw new JogoNaoCadastradoException();
+                throw new JogoJaCadastradoException();
 
             var jogoInsert = new Jogo
             {
