@@ -76,9 +76,17 @@ namespace APICatalogoJogos.Controllers.V1
         }
 
         [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
-        public async Task<ActionResult> AtualizarJogo(Guid idJogo, double preco)
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] double preco)
         {
-            return Ok();
+            try
+            {
+                await _jogoService.Atualizar(idJogo, preco);
+
+                return Ok();
+            }
+            catch(Exception ex){
+                return NotFound("Este jogo não existe");
+            }
         }
 
         [HttpDelete("{idJogo:guid}")]
