@@ -2,7 +2,6 @@
 using APICatalogoJogos.InputModel;
 using APICatalogoJogos.Services;
 using APICatalogoJogos.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -52,7 +51,7 @@ namespace APICatalogoJogos.Controllers.V1
             try
             {
                 var jogo = await _jogoService.Inserir(jogoInputModel);
-                
+
                 return Ok(jogo);
             }
             catch (JogoJaCadastradoException ex)
@@ -67,7 +66,7 @@ namespace APICatalogoJogos.Controllers.V1
             try
             {
                 await _jogoService.Atualizar(idJogo, jogoInputModel);
-                
+
                 return Ok();
             }
             catch (JogoNaoCadastradoException ex)
@@ -85,7 +84,8 @@ namespace APICatalogoJogos.Controllers.V1
 
                 return Ok();
             }
-            catch(JogoNaoCadastradoException ex){
+            catch (JogoNaoCadastradoException ex)
+            {
                 return NotFound("Este jogo não existe");
             }
         }
@@ -99,7 +99,7 @@ namespace APICatalogoJogos.Controllers.V1
 
                 return Ok();
             }
-            catch(JogoNaoCadastradoException ex)
+            catch (JogoNaoCadastradoException ex)
             {
                 return NotFound("Este jogo não existe");
             }

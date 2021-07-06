@@ -40,7 +40,7 @@ namespace APICatalogoJogos.Repositories
         {
             var retorno = new List<Jogo>();
 
-            foreach(var jogo in jogos.Values)
+            foreach (var jogo in jogos.Values)
             {
                 if (jogo.Nome.Equals(nome) && jogo.Produtora.Equals(produtora))
                     retorno.Add(jogo);

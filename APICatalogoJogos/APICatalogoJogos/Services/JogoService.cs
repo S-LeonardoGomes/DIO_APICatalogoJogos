@@ -102,7 +102,7 @@ namespace APICatalogoJogos.Services
 
         public async Task Remover(Guid id)
         {
-            var jogo = _jogoRepository.Obter(id);
+            var jogo = await _jogoRepository.Obter(id);
 
             if (jogo == null)
                 throw new JogoNaoCadastradoException();
