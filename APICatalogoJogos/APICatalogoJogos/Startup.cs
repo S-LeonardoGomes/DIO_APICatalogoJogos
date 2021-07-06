@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace APICatalogoJogos
 {
@@ -27,6 +30,10 @@ namespace APICatalogoJogos
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "APICatalogoJogos", Version = "v1" });
+
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
+                c.IncludeXmlComments(Path.Combine(basePath, fileName));
             });
         }
 
